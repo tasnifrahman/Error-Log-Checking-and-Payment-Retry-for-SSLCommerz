@@ -1,0 +1,14 @@
+ERROR 2024-11-21 02:16:22,993 views Payment initiation failed on attempt 1: Payment gateway returned failure: Timeout occurred
+ERROR 2024-11-21 02:16:22,993 views Payment initiation failed on attempt 1: Payment gateway returned failure: Timeout occurred
+ERROR 2024-11-21 02:16:24,995 views Payment initiation failed on attempt 2: Simulated network failure
+ERROR 2024-11-21 02:16:24,995 views Payment initiation failed on attempt 2: Simulated network failure
+ERROR 2024-11-21 02:16:31,996 views Payment initiation failed on attempt 3: Payment gateway returned failure: Timeout occurred
+ERROR 2024-11-21 02:16:31,996 views Payment initiation failed on attempt 3: Payment gateway returned failure: Timeout occurred
+ERROR 2024-11-21 02:16:33,998 views Payment initiation failed on attempt 4: Payment gateway returned failure: Invalid credentials
+ERROR 2024-11-21 02:16:33,998 views Payment initiation failed on attempt 4: Payment gateway returned failure: Invalid credentials
+ERROR 2024-11-21 02:16:35,999 views Payment initiation failed on attempt 5: Payment gateway returned failure: Unknown error from gateway
+ERROR 2024-11-21 02:16:35,999 views Payment initiation failed on attempt 5: Payment gateway returned failure: Unknown error from gateway
+ERROR 2024-11-21 02:16:38,001 views Payment initiation failed on attempt 6: Payment gateway returned failure: Unknown error from gateway
+ERROR 2024-11-21 02:16:38,001 views Payment initiation failed on attempt 6: Payment gateway returned failure: Unknown error from gateway
+INFO 2024-11-21 02:16:40,157 views Payment initiation successful on attempt 7.
+INFO 2024-11-21 02:16:53,976 views Payment for transaction 6e583c5a-687 successfully completed.

@@ -1,0 +1,4 @@
+ERROR 2024-11-21 02:06:35,290 views Payment initiation failed on attempt 1: Payment gateway returned failure: Invalid credentials
+ERROR 2024-11-21 02:06:37,295 views Payment initiation failed on attempt 2: Payment gateway returned failure: Invalid credentials
+ERROR 2024-11-21 02:06:39,295 views Payment initiation failed on attempt 3: Simulated network failure
+ERROR 2024-11-21 02:06:46,297 views Payment initiation failed on attempt 4: Payment gateway returned failure: Timeout occurred

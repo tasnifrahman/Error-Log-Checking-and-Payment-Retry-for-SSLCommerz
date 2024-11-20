@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+</head>
+<body>
+    <h1>Payment Successful</h1>
+    <p>Transaction ID: {{ payment.transaction_id }}</p>
+    <p>Status: {{ payment.status }}</p>
+    <p>Thank you for your payment!</p>
+    <a href="{% url 'initiate_payment' %}">Go Back to Homepage</a>
+</body>
+</html>

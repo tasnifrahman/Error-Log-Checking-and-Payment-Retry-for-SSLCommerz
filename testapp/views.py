@@ -16,7 +16,7 @@ formatter = logging.Formatter('%(levelname)s %(asctime)s %(name)s %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-# Mock error scenarios
+# Mock error scenarios for testing purposes
 def mock_invalid_credentials(post_body):
     return {'status': 'FAILED', 'failedreason': 'Invalid credentials'}
 
@@ -29,6 +29,27 @@ def mock_network_failure(post_body):
 
 def mock_unknown_error(post_body):
     return {'status': 'FAILED', 'failedreason': 'Unknown error from gateway'}
+
+def mock_currency_mismatch(post_body):
+    return {'status': 'FAILED', 'failedreason': 'Currency mismatch'}
+
+def mock_invalid_amount(post_body):
+    return {'status': 'FAILED', 'failedreason': 'Invalid amount'}
+
+def mock_duplicate_transaction_id(post_body):
+    return {'status': 'FAILED', 'failedreason': 'Duplicate transaction ID'}
+
+def mock_inactive_store(post_body):
+    return {'status': 'FAILED', 'failedreason': 'Inactive store'}
+
+def mock_session_expired(post_body):
+    return {'status': 'FAILED', 'failedreason': 'Session expired'}
+
+def mock_invalid_store(post_body):
+    return {'status': 'FAILED', 'failedreason': 'Invalid store ID'}
+
+def mock_invalid_card_number(post_body):
+    return {'status': 'FAILED', 'failedreason': 'Invalid card number'}
 
 def initiate_payment(request):
     if request.method == 'POST':
@@ -72,14 +93,26 @@ def initiate_payment(request):
             while retry_count < max_retries:
                 try:
                     # Simulate error scenarios for testing
-                    error_scenario = random.choice(
-                        [mock_invalid_credentials, mock_timeout_error, mock_network_failure, mock_unknown_error, None]
-                    )
+                    error_scenario = random.choice([
+                        mock_invalid_credentials,
+                        mock_timeout_error,
+                        mock_network_failure,
+                        mock_unknown_error,
+                        mock_currency_mismatch,
+                        mock_invalid_amount,
+                        mock_duplicate_transaction_id,
+                        mock_inactive_store,
+                        mock_session_expired,
+                        mock_invalid_store,
+                        mock_invalid_card_number,
+                        None  # Success case
+                    ])
 
                     if error_scenario:
                         response = error_scenario(post_body)  # Simulate error
                     else:
                         response = sslcz.createSession(post_body)  # Real call
+                        logger.info(f"SSLCommerz Response: {response}")
 
                     if response['status'] == 'SUCCESS':
                         logger.info(
@@ -95,6 +128,7 @@ def initiate_payment(request):
 
                     else:
                         error_reason = response.get('failedreason', 'Unknown error')
+                        logger.error(f"SSLCommerz & mock Error: {response['status']}, Reason: {error_reason}, Response: {response}")
                         raise RuntimeError(
                             f"Payment gateway returned failure: {error_reason}"
                         )
@@ -111,7 +145,7 @@ def initiate_payment(request):
             return render(
                 request,
                 'testapp/payment_error.html',
-                {'error_message': 'Payment initiation failed. Please try again later.'},
+                {'error_message': 'Payment initiation failed. Please try again later.', 'response': response},
             )
 
         except Exception as e:

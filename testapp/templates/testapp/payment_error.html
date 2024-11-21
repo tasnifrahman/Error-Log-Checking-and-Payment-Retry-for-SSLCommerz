@@ -40,6 +40,7 @@
         <p class="error">An error occurred during the payment process.</p>
         <div class="message">
             {{ error_message }}
+            {{ response }}
         </div>
         <a href="{% url 'initiate_payment' %}" class="back-link">Try Again</a>
     </div>
